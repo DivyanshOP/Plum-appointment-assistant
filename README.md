@@ -5,7 +5,7 @@ appointment requests, typed text or photographed/scanned notes, into
 structured scheduling data, via a 4-step pipeline: OCR, Entity
 Extraction, Normalization, Final Appointment JSON, with guardrails
 for ambiguous or incomplete input.
-
+Live URL : http://13.48.29.48:8000
 Built for the Plum SDE Intern Assignment, Problem Statement 1.
 
 ---
