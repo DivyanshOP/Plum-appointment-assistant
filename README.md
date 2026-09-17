@@ -126,7 +126,7 @@ tesseract --version
 ### Install
 
 ```bash
-git clone <this-repo-url>
+git clone https://github.com/DivyanshOP/Plum-appointment-assistant.git
 cd plum-appointment-assistant
 python3.12 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
