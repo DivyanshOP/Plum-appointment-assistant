@@ -148,7 +148,63 @@ Server starts at `http://127.0.0.1:8000`. Interactive API docs
 ```bash
 pytest tests/ -v
 ```
+---
 
+## Demo walkthrough (terminal + Swagger UI)
+
+Quick copy-paste commands and UI steps for demoing/recording the endpoints
+end to end. Swap the host for `127.0.0.1:8000` if running locally instead
+of against the live deployment.
+
+### Terminal (curl)
+
+**1. Text endpoint, success case**
+```bash
+curl -X POST http://13.48.29.48:8000/api/appointment/text -H "Content-Type: application/json" -d '{"raw_text": "Book dentist next Friday at 3pm"}'
+```
+
+**2. Text endpoint, guardrail (unrecognized department)**
+```bash
+curl -X POST http://13.48.29.48:8000/api/appointment/text -H "Content-Type: application/json" -d '{"raw_text": "Book appointment next Friday at 3pm"}'
+```
+
+**3. Text endpoint, guardrail (missing time)**
+```bash
+curl -X POST http://13.48.29.48:8000/api/appointment/text -H "Content-Type: application/json" -d '{"raw_text": "Book dentist next Friday"}'
+```
+
+**4. Image endpoint, success case** (run from wherever the sample image is saved)
+```bash
+curl -X POST http://13.48.29.48:8000/api/appointment/image -F "file=@sample_clean_note.png"
+```
+
+**5. Health check**
+```bash
+curl http://13.48.29.48:8000/health
+```
+
+**6. Run tests** (locally, in the project folder with the venv activated)
+```bash
+pytest tests/ -v
+```
+
+### Swagger UI (`/docs`)
+
+**Text endpoint:**
+1. Open `http://13.48.29.48:8000/docs`
+2. Expand `POST /api/appointment/text`
+3. Click **Try it out**
+4. Replace the request body with:
+```json
+   { "raw_text": "Book dentist next Friday at 3pm" }
+```
+5. Click **Execute** and check the response body below
+
+**Image endpoint:**
+1. Expand `POST /api/appointment/image`
+2. Click **Try it out**
+3. Click **Choose File** under the `file` field and select a sample image
+4. Click **Execute** and check the response body below
 ### Expose publicly (for demo/submission)
 
 ```bash
